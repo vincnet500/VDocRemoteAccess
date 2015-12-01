@@ -1,0 +1,8 @@
+style chrome://global/content/customizeToolbar.xul chrome://vdocremoteaccess/skin/button.css
+overlay	chrome://browser/content/browser.xul chrome://vdocremoteaccess/content/button.xul
+
+content vdocremoteaccess chrome/content/
+skin vdocremoteaccess classic/1.0 chrome/skin/
+
+locale vdocremoteaccess fr-FR chrome/locale/fr-FR/
+locale vdocremoteaccess en-US chrome/locale/en-US/

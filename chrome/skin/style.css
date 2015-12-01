@@ -1,0 +1,81 @@
+
+#vra-prefpane {
+	padding: 0;
+}
+
+#vra-header {
+	padding: 10px 15px;
+	background-color: #FFFFFF;
+	background-image: url(chrome://vdocremoteaccess/skin/icon_16x16.png);
+	background-position: 10px 13px;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #b0bdcc;
+}
+
+#vra-subheader {
+	padding: 5px 5px;
+	background-color: #FFFFFF;
+	background-position: 7px 13px;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #b0bdcc;
+}
+
+#vra-footer {
+	padding: 10px 10px;
+}
+
+#vra-header text {
+	padding: 0 0 0 18px;
+	font-size: 14px;
+}
+
+#vra-wrapper {
+	padding: 5px 10px;
+}
+
+#vra-wrapper caption {
+	padding: 0 2px;
+}
+
+#vra-types {
+	width: 160px;
+}
+
+#vra-notif {
+	width: 160px;
+}
+
+#vra-loading {
+    position: fixed;
+    top: 40%;
+    left: 37%;
+    width: 150px;
+    height: 50px;
+    background-color: darkgrey;
+    border-radius: 5px;
+    z-index: 20;
+    display: none;
+}
+#vra-loading-text {
+    position: absolute;
+    top:30%;
+    left:20%;
+}
+#vra-loading-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: darkgray;
+    opacity: 0.4;
+    z-index: 10;
+}
+
+.cell-highlighted {
+    font-weight: bold;
+}
+
+#res-about-topbox {
+    margin-top: 10px;
+}

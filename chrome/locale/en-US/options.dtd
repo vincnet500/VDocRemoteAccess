@@ -1,0 +1,8 @@
+<!ENTITY preferences.title "Options">
+<!ENTITY preferences.servercaption "VDoc Server">
+<!ENTITY preferences.serverinput "VDoc Server URL :">
+<!ENTITY preferences.connectioncaption "VDoc Server Connection :">
+<!ENTITY preferences.login "Login :">
+<!ENTITY preferences.password "Password :">
+<!ENTITY preferences.testconnection "VDoc server connection test">
+<!ENTITY preferences.loading "Please wait">

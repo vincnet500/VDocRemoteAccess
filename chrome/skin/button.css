@@ -1,0 +1,13 @@
+
+#vra-button {
+	list-style-image: url("chrome://vdocremoteaccess/skin/icon_16x16.png");
+}
+
+[iconsize="small"] #vra-button {
+	list-style-image: url("chrome://vdocremoteaccess/skin/icon_16x16.png");
+}
+
+#res-button[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #res-button {
+	list-style-image: url("chrome://vdocremoteaccess/skin/icon_32x32.png");
+}

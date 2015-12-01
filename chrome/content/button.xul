@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="chrome://vdocremoteaccess/skin/button.css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://vdocremoteaccess/locale/button.dtd">
+
+<overlay id="vra-overlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	
+    <script type="application/javascript" src="chrome://vdocremoteaccess/content/XMLWriter-1.0.0-min.js" />
+    <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
+    <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+	<script type="application/javascript" src="chrome://vdocremoteaccess/content/button.js"/>
+	
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbarbutton id="vra-button" class="toolbarbutton-1" label="&button.vdocremoteaccess;" tooltiptext="&button.tooltip;" 
+		oncommand="VRAButton.run(event);" context="vra-context-menu">
+			<menupopup id="vra-context-menu" ignorekeys="true">
+				<menu label="&button.createDocument;" value="createDocument">
+                    <menupopup id="vra-context-new-document-menu">
+                    </menupopup>
+                </menu>
+                <menuseparator/>
+                <menuitem label="&button.mycurrenttasks;" value="mycurrenttasks" />
+                <menuitem label="&button.mydelayedtasks;" value="mydelayedtasks" />
+                <menuitem label="&button.mydocuments;" value="mydocuments" />
+				<menuseparator/>
+				<menuitem label="&button.options;" value="options" />
+                <menuseparator/>
+				<menuitem label="&button.about;" value="about" />
+			</menupopup>
+		</toolbarbutton>
+	</toolbarpalette>
+
+</overlay>
