@@ -1,0 +1,12 @@
+<!ENTITY mycurrenttasks.title "Mes tâches en cours">
+<!ENTITY mycurrenttasks.close "Fermer">
+<!ENTITY mycurrenttasks.workflow "Processus">
+<!ENTITY mycurrenttasks.loading "Veuillez patienter">
+<!ENTITY mycurrenttasks.sys_Reference "Référence">
+<!ENTITY mycurrenttasks.sys_Title "Titre">
+<!ENTITY mycurrenttasks.sys_Creator "Créateur">
+<!ENTITY mycurrenttasks.sys_CreationDate "Date de création">
+<!ENTITY mycurrenttasks.sys_CurrentSteps "Etape courante">
+<!ENTITY mycurrenttasks.DocumentState "Etat du document">
+<!ENTITY mycurrenttasks.refresh "Rafraichir">
+<!ENTITY mycurrenttasks.information "Vous trouvez ici une liste de vos tâches en cours.">

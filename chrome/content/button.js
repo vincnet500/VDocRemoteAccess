@@ -2,8 +2,7 @@
 VRAButton = {
 	
 	init: function () {
-		this.loadWorkflows();
-        this.addButton();
+		this.addButton();
 	},
 	
 	addButton: function () {
@@ -50,7 +49,7 @@ VRAButton = {
             
             var allWorkflowEntries = [];
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&_AuthenticationKey=" + token, true);
+            xhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     var parser = new DOMParser();
@@ -97,6 +96,9 @@ VRAButton = {
         else if (a == 'about') {
 			window.open('chrome://vdocremoteaccess/content/about.xul', '', 'chrome,centerscreen');
 		}
+        else if (a == 'mycurrenttasks') {
+            window.open('chrome://vdocremoteaccess/content/mycurrenttasks.xul', '', 'chrome,centerscreen');
+        }
         else {
             var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
             VRASystem.doSecure(serverName, GenericSystem.getPref("login"), GenericSystem.getPref("password"), function(xhr) {

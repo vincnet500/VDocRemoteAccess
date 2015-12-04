@@ -5,8 +5,36 @@ VRASystem = {
 		
 	},
 	
-	initCommonList: function(listName, path, rootIterator, offset, eraseExistingValues, callback, endcallback) {
-		//TODO
+	initCommonList: function(listName, token, module, cmd, xmlObject, resultPath, eraseExistingValues, callback, endCallback) {
+		var popup = document.getElementById(listName);
+        if (eraseExistingValues) {
+            popup.innerHTML = '';
+            popup.parentNode.value = '';
+        }
+        var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", serverName + "navigation/flow?module=" + module + "&cmd=" + cmd + "&killsession=false&_AuthenticationKey=" + token, true);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+					var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(xhr.responseText, "application/xml");
+                    var itNote = xmlDoc;
+                    var resultPathTab = resultPath.split('/');
+                    for (var key in resultPathTab) {
+                        var itNote = itNote.getElementsByTagName(resultPathTab[key]);
+                        if (key < resultPathTab.length - 1) {
+                            itNote = itNote[0];   
+                        }
+                    }
+                    for (var key = 0; key < itNote.length; key++) {
+                        callback(popup, itNote[key]);
+                    }
+                    endCallback();
+				}
+			}
+		}
+		xhr.send(xmlObject.flush());
 	},
     
     validateServerName : function(serverName) {
@@ -20,6 +48,7 @@ VRASystem = {
         if (serverName == '') {
             serverName = GenericSystem.getPref("serverName");
         }
+        serverName = VRASystem.validateServerName(serverName);
         if (login == '') {
             login = GenericSystem.getPref("login");
         }
@@ -36,7 +65,7 @@ VRASystem = {
             root.authenticate.header.timeout = 30;
             
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", serverName + "navigation/flow?module=portal&cmd=authenticate&flowmode=json", true);
+            xhr.open("POST", serverName + "navigation/flow?module=portal&cmd=authenticate&killsession=false&flowmode=json", true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     callback(xhr);

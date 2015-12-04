@@ -12,7 +12,7 @@
 	
     <toolbarpalette id="BrowserToolbarPalette">
         <toolbarbutton id="vra-button" class="toolbarbutton-1" label="&button.vdocremoteaccess;" tooltiptext="&button.tooltip;" 
-		oncommand="VRAButton.run(event);" context="vra-context-menu">
+		oncommand="VRAButton.run(event);" context="vra-context-menu" oncontextmenu="VRAButton.loadWorkflows();return true;">
 			<menupopup id="vra-context-menu" ignorekeys="true">
 				<menu label="&button.createDocument;" value="createDocument">
                     <menupopup id="vra-context-new-document-menu">

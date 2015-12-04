@@ -1,0 +1,12 @@
+<!ENTITY mycurrenttasks.title "My current tasks">
+<!ENTITY mycurrenttasks.close "Fermer">
+<!ENTITY mycurrenttasks.workflow "Workflow">
+<!ENTITY mycurrenttasks.loading "Please wait">
+<!ENTITY mycurrenttasks.sys_Reference "Reference">
+<!ENTITY mycurrenttasks.sys_Title "Title">
+<!ENTITY mycurrenttasks.sys_Creator "Creator">
+<!ENTITY mycurrenttasks.sys_CreationDate "Creation Date">
+<!ENTITY mycurrenttasks.sys_CurrentSteps "Current Step">
+<!ENTITY mycurrenttasks.DocumentState "Document State">
+<!ENTITY mycurrenttasks.refresh "Refresh">
+<!ENTITY mycurrenttasks.information "Please find here a list of all your current tasks.">

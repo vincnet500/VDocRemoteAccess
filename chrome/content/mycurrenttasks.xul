@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://vdocremoteaccess/skin/style.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://vdocremoteaccess/locale/mycurrenttasks.dtd">
+
+<window xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&mycurrenttasks.title;" id="vra-mycurrenttasks">
+	<vbox>
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/XMLWriter-1.0.0-min.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/mygenericdata.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/mycurrenttasks.js" />
+        
+        <box id="vra-header">
+			<text value="VDoc Remote Access" />
+		</box>
+		
+        <box id="vra-subheader">
+			<description>
+                &mycurrenttasks.information;
+			</description>
+		</box>
+        
+        <vbox id="vra-loading-panel">
+            <html:div id="vra-loading">
+                <div id="vra-loading-text">&mycurrenttasks.loading;</div>
+                <div id="vra-loading-overlay"></div>
+            </html:div>
+        </vbox>
+        
+        <box orient="vertical">
+			<groupbox>
+				<label value="&mycurrenttasks.workflow;"/>
+				<menulist onselect="VRAGenericData.loadData('ASSIGNED_TASKS', VRACurrentTasks.findData, VRACurrentTasks.customDataClassName);">
+				  <menupopup id="workflowName">
+				  </menupopup>
+                </menulist>
+            </groupbox>
+            <groupbox>
+                <listbox id="dataTable">
+                  <listhead>
+                    <listheader label="&mycurrenttasks.sys_Reference;" width="100" />
+                    <listheader label="&mycurrenttasks.sys_Title;" width="400" />
+                    <listheader label="&mycurrenttasks.sys_Creator;" width="158" />
+                    <listheader label="&mycurrenttasks.sys_CreationDate;" width="108" />
+                    <listheader label="&mycurrenttasks.sys_CurrentSteps;" width="108" />
+                    <listheader label="&mycurrenttasks.DocumentState;" width="150" />
+                  </listhead>
+                </listbox>
+            </groupbox>
+        </box>
+        
+        <hbox align="right"> 
+            <button oncommand="VRAGenericData.loadData('ASSIGNED_TASKS', VRACurrentTasks.findData, VRACurrentTasks.customDataClassName);">
+			  <description>&mycurrenttasks.refresh;</description>
+			</button>
+            <button oncommand="window.close();">
+			  <description>&mycurrenttasks.close;</description>
+			</button>
+		</hbox>
+        
+        <box id="vra-footer">
+		</box>
+	</vbox>
+</window>

@@ -76,6 +76,10 @@
     font-weight: bold;
 }
 
-#res-about-topbox {
+#vra-about-topbox {
     margin-top: 10px;
+}
+
+#vra-mycurrenttasks {
+    width: 1024px;
 }
