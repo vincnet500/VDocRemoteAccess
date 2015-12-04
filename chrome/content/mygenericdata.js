@@ -148,7 +148,7 @@ VRAGenericData = {
                                         catch (e) {}
                                     }
                                     
-                                    GenericSystem.appendListBox("dataTable", customDataClassName(elementNode), headerNode.getAttribute("uri"), [reference, title, creator, creationDate, currentSteps, documentState]);
+                                    GenericSystem.appendListBox("dataTable", customDataClassName(elementNode), headerNode.getAttribute("uri"), [reference, (title.length > 60?title.substring(0, 57) + "...":title), creator, creationDate, currentSteps, documentState]);
                                 }
                             }
                             catch (e) {}

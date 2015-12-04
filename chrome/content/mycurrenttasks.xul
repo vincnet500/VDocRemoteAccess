@@ -40,9 +40,9 @@
             <groupbox>
                 <listbox id="dataTable">
                   <listhead>
-                    <listheader label="&mycurrenttasks.sys_Reference;" width="150" />
+                    <listheader label="&mycurrenttasks.sys_Reference;" width="168" />
                     <listheader label="&mycurrenttasks.sys_Title;" width="375" />
-                    <listheader label="&mycurrenttasks.sys_Creator;" width="158" />
+                    <listheader label="&mycurrenttasks.sys_Creator;" width="140" />
                     <listheader label="&mycurrenttasks.sys_CreationDate;" width="108" />
                     <listheader label="&mycurrenttasks.sys_CurrentSteps;" width="108" />
                     <listheader label="&mycurrenttasks.DocumentState;" width="125" />

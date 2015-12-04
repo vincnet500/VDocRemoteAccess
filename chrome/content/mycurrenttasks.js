@@ -12,7 +12,6 @@ VRACurrentTasks = {
     customDataClassName: function(data) {
         var dataDateString = data.getElementsByTagName("header")[0].getAttribute("created-date");
         var dataDate = new Date(dataDateString).toLocaleFormat('%d-%b-%Y');
-        console.error(dataDate);
         if (dataDate == new Date().toLocaleFormat('%d-%b-%Y')) {
             return "cell-highlighted";
         }
