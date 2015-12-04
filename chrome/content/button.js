@@ -99,6 +99,9 @@ VRAButton = {
         else if (a == 'mycurrenttasks') {
             window.open('chrome://vdocremoteaccess/content/mycurrenttasks.xul', '', 'chrome,centerscreen');
         }
+        else if (a == 'mydelayedtasks') {
+            window.open('chrome://vdocremoteaccess/content/mydelayedtasks.xul', '', 'chrome,centerscreen');
+        }
         else {
             var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
             VRASystem.doSecure(serverName, GenericSystem.getPref("login"), GenericSystem.getPref("password"), function(xhr) {
@@ -107,7 +110,7 @@ VRAButton = {
                 if (a.charAt(0) === '/') {
                      a = a.substr(1);
                 }
-                window.open(serverName + a + "&_AuthenticationKey=" + token);
+                GenericSystem.openInANewTab(serverName + a + "&_AuthenticationKey=" + token);
             });
         }
 	}

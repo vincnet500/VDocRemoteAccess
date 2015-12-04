@@ -80,6 +80,9 @@
     margin-top: 10px;
 }
 
-#vra-mycurrenttasks {
+#vra-mycurrenttasks, #vra-mydelayedtasks {
     width: 1024px;
+}
+#dataTable {
+    height: 400px;   
 }

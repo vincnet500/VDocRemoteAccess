@@ -1,0 +1,12 @@
+<!ENTITY mydelayedtasks.title "My delayed tasks">
+<!ENTITY mydelayedtasks.close "Fermer">
+<!ENTITY mydelayedtasks.workflow "Workflow">
+<!ENTITY mydelayedtasks.loading "Please wait">
+<!ENTITY mydelayedtasks.sys_Reference "Reference">
+<!ENTITY mydelayedtasks.sys_Title "Title">
+<!ENTITY mydelayedtasks.sys_Creator "Creator">
+<!ENTITY mydelayedtasks.sys_CreationDate "Creation Date">
+<!ENTITY mydelayedtasks.sys_CurrentSteps "Current Step">
+<!ENTITY mydelayedtasks.DocumentState "Document State">
+<!ENTITY mydelayedtasks.refresh "Refresh">
+<!ENTITY mydelayedtasks.information "Please find here a list of all your delayed tasks.">

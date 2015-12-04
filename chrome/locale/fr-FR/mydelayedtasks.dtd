@@ -1,0 +1,12 @@
+<!ENTITY mydelayedtasks.title "Mes tâches en retard">
+<!ENTITY mydelayedtasks.close "Fermer">
+<!ENTITY mydelayedtasks.workflow "Processus">
+<!ENTITY mydelayedtasks.loading "Veuillez patienter">
+<!ENTITY mydelayedtasks.sys_Reference "Référence">
+<!ENTITY mydelayedtasks.sys_Title "Titre">
+<!ENTITY mydelayedtasks.sys_Creator "Créateur">
+<!ENTITY mydelayedtasks.sys_CreationDate "Date de création">
+<!ENTITY mydelayedtasks.sys_CurrentSteps "Etape courante">
+<!ENTITY mydelayedtasks.DocumentState "Etat du document">
+<!ENTITY mydelayedtasks.refresh "Rafraichir">
+<!ENTITY mydelayedtasks.information "Vous trouvez ici une liste de vos tâches en retard.">

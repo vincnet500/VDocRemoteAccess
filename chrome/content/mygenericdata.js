@@ -1,14 +1,25 @@
 
 VRAGenericData = {
 	
-	init: function(mustCenter, getXMLObject) {
+	init: function(mustCenter) {
         GenericSystem.showLoading('vra-loading', true);
         var allWorkflows = [];
         var localWorkflowPopup = null;
         VRASystem.doSecure('', '', '', function(xhr) {
             var jsonResponse = JSON.parse(xhr.responseText);
             var token = jsonResponse.authenticate.body.token["@key"];
-            VRASystem.initCommonList("workflowName", token, "workflow", "cmd", getXMLObject(), "view/body/workflow", true, function(popup, elem)  {
+            
+            var xw = new XMLWriter('UTF-8');
+            xw.writeStartDocument();
+            xw.writeStartElement("view");
+            xw.writeEndDocument();
+            xw.writeAttributeString("xmlns:vw1", "http://www.axemble.com/process/view");
+            xw.writeStartElement("header");
+            xw.writeAttributeString("name", "WORKFLOWS");
+            xw.writeEndElement();
+            xw.writeEndElement();
+            
+            VRASystem.initCommonList("workflowName", token, "workflow", "cmd", xw, "view/body/workflow", true, function(popup, elem)  {
                 localWorkflowPopup = popup;
                 allWorkflows.push(elem);
             }, function() {
@@ -35,7 +46,18 @@ VRAGenericData = {
             if (!target) {
                 return;
             }
-            console.error(target.getAttribute("value"));
+            VRASystem.doSecure('', '', '', function(xhr) {
+                var jsonResponse = JSON.parse(xhr.responseText);
+                var token = jsonResponse.authenticate.body.token["@key"];
+                
+                var uri = target.getAttribute("uri");
+                var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
+                if (uri.charAt(0) === '/') {
+                     uri = uri.substr(1);
+                }
+                
+                GenericSystem.openInANewTab(serverName + uri + "&_AuthenticationKey=" + token);
+            });
         }, false);
         
         if (mustCenter) {
@@ -45,7 +67,7 @@ VRAGenericData = {
         }
 	},
     
-    loadData : function(viewType, findDataFunction, customDataClassName) {
+    loadData : function(getXMLObject, findDataFunction, customDataClassName) {
         GenericSystem.showLoading('vra-loading', true);
         GenericSystem.cleanListBox("dataTable");
         
@@ -55,34 +77,7 @@ VRAGenericData = {
             var jsonResponse = JSON.parse(xhr.responseText);
             var token = jsonResponse.authenticate.body.token["@key"];
             
-            var xw = new XMLWriter('UTF-8');
-            xw.writeStartDocument();
-            xw.writeStartElement("view");
-            xw.writeEndDocument();
-            xw.writeAttributeString("xmlns:vw1", "http://www.axemble.com/process/view");
-            xw.writeStartElement("header");
-            xw.writeAttributeString("name", viewType);
-            xw.writeStartElement("column");
-            xw.writeAttributeString("name", "sys_Reference");
-            xw.writeEndElement();
-            xw.writeStartElement("column");
-            xw.writeAttributeString("name", "sys_Title");
-            xw.writeEndElement();
-            xw.writeStartElement("column");
-            xw.writeAttributeString("name", "sys_Creator");
-            xw.writeEndElement();
-            xw.writeStartElement("column");
-            xw.writeAttributeString("name", "sys_CreationDate");
-            xw.writeEndElement();
-            xw.writeStartElement("column");
-            xw.writeAttributeString("name", "sys_CurrentSteps");
-            xw.writeEndElement();
-            xw.writeStartElement("column");
-            xw.writeAttributeString("name", "DocumentState");
-            xw.writeEndElement();
-            xw.writeEndElement();
-            xw.writeEndElement();
-            
+            var xw = getXMLObject();
             var subXhr = new XMLHttpRequest();
             var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
             subXhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
@@ -92,9 +87,30 @@ VRAGenericData = {
                         var parser = new DOMParser();
                         var xmlDoc = parser.parseFromString(subXhr.responseText, "application/xml"); 
                         var elementArray = xmlDoc.getElementsByTagName("view")[0].getElementsByTagName("body")[0].getElementsByTagName("element");
+                        var allDocuments = [];
+                        
                         for (var key in elementArray) {
+                            var documentElement = elementArray[key];
                             try {
-                                var headerNode = elementArray[key].getElementsByTagName("header")[0];
+                                allDocuments.push(documentElement);
+                            }
+                            catch(e) {}
+                        }
+                        
+                        allDocuments.sort(function(a, b) {
+                            try {
+                                if (new Date(a.getElementsByTagName("header")[0].getAttribute("created-date")) < new Date(b.getElementsByTagName("header")[0].getAttribute("created-date")))
+                                    return 1;
+                                if (new Date(a.getElementsByTagName("header")[0].getAttribute("created-date")) > new Date(b.getElementsByTagName("header")[0].getAttribute("created-date")))
+                                    return -1;
+                            }
+                            catch (e) {}
+                            return 0;
+                        });
+                        
+                        for (var key in allDocuments) {
+                            try {
+                                var headerNode = allDocuments[key].getElementsByTagName("header")[0];
                                 if (headerNode.getElementsByTagName("resource-definition")[0].getAttribute("name") == workflowProtocolUri) {
                                     var elementNode = headerNode.parentNode;
                                     
@@ -120,7 +136,7 @@ VRAGenericData = {
                                                 creator = bodyValues[key].getAttribute("first-name") + " " + bodyValues[key].getAttribute("last-name");
                                             }
                                             else if (aName == "sys_CreationDate") {
-                                                creationDate = aValue;
+                                                creationDate = new Date(aValue).toLocaleFormat('%d-%b-%Y');
                                             }
                                             else if (aName == "sys_CurrentSteps") {
                                                 currentSteps = aValue;
@@ -132,14 +148,7 @@ VRAGenericData = {
                                         catch (e) {}
                                     }
                                     
-                                    console.error(reference);
-                                    console.error(title);
-                                    console.error(creator);
-                                    console.error(creationDate);
-                                    console.error(currentSteps);
-                                    console.error(documentState);
-                                    
-                                    GenericSystem.appendListBox("dataTable", "", [reference, title, creator, creationDate, currentSteps, documentState]);
+                                    GenericSystem.appendListBox("dataTable", customDataClassName(elementNode), headerNode.getAttribute("uri"), [reference, title, creator, creationDate, currentSteps, documentState]);
                                 }
                             }
                             catch (e) {}

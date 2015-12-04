@@ -9,4 +9,4 @@
 <!ENTITY mycurrenttasks.sys_CurrentSteps "Etape courante">
 <!ENTITY mycurrenttasks.DocumentState "Etat du document">
 <!ENTITY mycurrenttasks.refresh "Rafraichir">
-<!ENTITY mycurrenttasks.information "Vous trouvez ici une liste de vos tâches en cours.">
+<!ENTITY mycurrenttasks.information "Vous trouvez ici une liste de vos tâches en cours. Les document d'aujourd'hui sont mis en évidence en gras.">

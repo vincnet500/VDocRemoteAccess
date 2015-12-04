@@ -2,15 +2,15 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://vdocremoteaccess/skin/style.css" type="text/css"?>
 
-<!DOCTYPE window SYSTEM "chrome://vdocremoteaccess/locale/mycurrenttasks.dtd">
+<!DOCTYPE window SYSTEM "chrome://vdocremoteaccess/locale/mydelayedtasks.dtd">
 
-<window xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&mycurrenttasks.title;" id="vra-mycurrenttasks">
+<window xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&mydelayedtasks.title;" id="vra-mydelayedtasks">
 	<vbox>
         <script type="application/javascript" src="chrome://vdocremoteaccess/content/XMLWriter-1.0.0-min.js" />
         <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
         <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
         <script type="application/javascript" src="chrome://vdocremoteaccess/content/mygenericdata.js" />
-		<script type="application/javascript" src="chrome://vdocremoteaccess/content/mycurrenttasks.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/mydelayedtasks.js" />
         
         <box id="vra-header">
 			<text value="VDoc Remote Access" />
@@ -18,21 +18,21 @@
 		
         <box id="vra-subheader">
 			<description>
-                &mycurrenttasks.information;
+                &mydelayedtasks.information;
 			</description>
 		</box>
         
         <vbox id="vra-loading-panel">
             <html:div id="vra-loading">
-                <div id="vra-loading-text">&mycurrenttasks.loading;</div>
+                <div id="vra-loading-text">&mydelayedtasks.loading;</div>
                 <div id="vra-loading-overlay"></div>
             </html:div>
         </vbox>
         
         <box orient="vertical">
 			<groupbox>
-				<label value="&mycurrenttasks.workflow;"/>
-				<menulist onselect="VRAGenericData.loadData(VRACurrentTasks.getXMLObject, VRACurrentTasks.findData, VRACurrentTasks.customDataClassName);">
+				<label value="&mydelayedtasks.workflow;"/>
+				<menulist onselect="VRAGenericData.loadData(VRADelayedTasks.getXMLObject, VRADelayedTasks.findData, VRADelayedTasks.customDataClassName);">
 				  <menupopup id="workflowName">
 				  </menupopup>
                 </menulist>
@@ -40,23 +40,23 @@
             <groupbox>
                 <listbox id="dataTable">
                   <listhead>
-                    <listheader label="&mycurrenttasks.sys_Reference;" width="150" />
-                    <listheader label="&mycurrenttasks.sys_Title;" width="375" />
-                    <listheader label="&mycurrenttasks.sys_Creator;" width="158" />
-                    <listheader label="&mycurrenttasks.sys_CreationDate;" width="108" />
-                    <listheader label="&mycurrenttasks.sys_CurrentSteps;" width="108" />
-                    <listheader label="&mycurrenttasks.DocumentState;" width="125" />
+                    <listheader label="&mydelayedtasks.sys_Reference;" width="150" />
+                    <listheader label="&mydelayedtasks.sys_Title;" width="375" />
+                    <listheader label="&mydelayedtasks.sys_Creator;" width="158" />
+                    <listheader label="&mydelayedtasks.sys_CreationDate;" width="108" />
+                    <listheader label="&mydelayedtasks.sys_CurrentSteps;" width="108" />
+                    <listheader label="&mydelayedtasks.DocumentState;" width="125" />
                   </listhead>
                 </listbox>
             </groupbox>
         </box>
         
         <hbox align="right"> 
-            <button oncommand="VRAGenericData.loadData(VRACurrentTasks.getXMLObject, VRACurrentTasks.findData, VRACurrentTasks.customDataClassName);">
-			  <description>&mycurrenttasks.refresh;</description>
+            <button oncommand="VRAGenericData.loadData(VRADelayedTasks.getXMLObject, VRADelayedTasks.findData, VRADelayedTasks.customDataClassName);">
+			  <description>&mydelayedtasks.refresh;</description>
 			</button>
             <button oncommand="window.close();">
-			  <description>&mycurrenttasks.close;</description>
+			  <description>&mydelayedtasks.close;</description>
 			</button>
 		</hbox>
         

@@ -9,4 +9,4 @@
 <!ENTITY mycurrenttasks.sys_CurrentSteps "Current Step">
 <!ENTITY mycurrenttasks.DocumentState "Document State">
 <!ENTITY mycurrenttasks.refresh "Refresh">
-<!ENTITY mycurrenttasks.information "Please find here a list of all your current tasks.">
+<!ENTITY mycurrenttasks.information "Please find here a list of all your current tasks. Today's documents are highlighted.">

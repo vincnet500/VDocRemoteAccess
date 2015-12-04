@@ -1,5 +1,5 @@
 
-VRACurrentTasks = {
+VRADelayedTasks = {
 	
     init: function(mustCenter) {
         VRAGenericData.init(mustCenter);
@@ -10,12 +10,6 @@ VRACurrentTasks = {
     },
     
     customDataClassName: function(data) {
-        var dataDateString = data.getElementsByTagName("header")[0].getAttribute("created-date");
-        var dataDate = new Date(dataDateString).toLocaleFormat('%d-%b-%Y');
-        console.error(dataDate);
-        if (dataDate == new Date().toLocaleFormat('%d-%b-%Y')) {
-            return "cell-highlighted";
-        }
         return "";
     },
     
@@ -26,7 +20,7 @@ VRACurrentTasks = {
         xw.writeEndDocument();
         xw.writeAttributeString("xmlns:vw1", "http://www.axemble.com/process/view");
         xw.writeStartElement("header");
-        xw.writeAttributeString("name", "ASSIGNED_TASKS");
+        xw.writeAttributeString("name", "DELAYED_TASKS");
         xw.writeStartElement("column");
         xw.writeAttributeString("name", "sys_Reference");
         xw.writeEndElement();
@@ -52,4 +46,4 @@ VRACurrentTasks = {
 
 }
 
-window.addEventListener("load", function () { VRACurrentTasks.init(true); }, false);
+window.addEventListener("load", function () { VRADelayedTasks.init(true); }, false);

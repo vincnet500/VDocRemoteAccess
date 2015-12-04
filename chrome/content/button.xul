@@ -21,7 +21,6 @@
                 <menuseparator/>
                 <menuitem label="&button.mycurrenttasks;" value="mycurrenttasks" />
                 <menuitem label="&button.mydelayedtasks;" value="mydelayedtasks" />
-                <menuitem label="&button.mydocuments;" value="mydocuments" />
 				<menuseparator/>
 				<menuitem label="&button.options;" value="options" />
                 <menuseparator/>

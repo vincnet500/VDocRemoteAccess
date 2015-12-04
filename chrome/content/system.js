@@ -5,11 +5,11 @@ GenericSystem = {
 		
 	},
     
-    appendListBox : function(listname, className, values) {
+    appendListBox : function(listname, className, internalValue, values) {
         const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
         var listBox = document.getElementById(listname);
         var listItem = document.createElementNS(XUL_NS, "listitem");
-        listItem.setAttribute("value", values[0]);
+        listItem.setAttribute("uri", internalValue);
         for (var key in values) {
             var listCell = document.createElementNS(XUL_NS, "listcell");
             listCell.setAttribute("label", values[key]);
@@ -169,6 +169,13 @@ GenericSystem = {
             language = language.substring(0, language.indexOf("-"));
         }
         return language;
+    },
+    
+    openInANewTab : function(link) {
+        var win = Components.classes['@mozilla.org/appshell/window-mediator;1']
+          .getService(Components.interfaces.nsIWindowMediator)
+          .getMostRecentWindow('navigator:browser');
+        win.openUILinkIn(link, 'tab');   
     }
 	
 }
