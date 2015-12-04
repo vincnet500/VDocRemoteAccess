@@ -31,7 +31,9 @@ VRAGenericData = {
                     return 0;
                 });
                 for (var key in allWorkflows) {
-                    localWorkflowPopup.appendChild(GenericSystem.createMenuItem(allWorkflows[key].getElementsByTagName("header")[0].getAttribute("protocol-uri"), allWorkflows[key].getElementsByTagName("header")[0].getAttribute("name")));
+                    if (allWorkflows[key].getElementsByTagName("header")[0].getAttribute("status") < 4) {
+                        localWorkflowPopup.appendChild(GenericSystem.createMenuItem(allWorkflows[key].getElementsByTagName("header")[0].getAttribute("name"), allWorkflows[key].getElementsByTagName("header")[0].getAttribute("label")));
+                    }
                 }
                 GenericSystem.showLoading('vra-loading', false);
             });
@@ -71,7 +73,7 @@ VRAGenericData = {
         GenericSystem.showLoading('vra-loading', true);
         GenericSystem.cleanListBox("dataTable");
         
-        var workflowProtocolUri = GenericSystem.getMenuPopupValue("workflowName"); 
+        var workflowName = GenericSystem.getMenuPopupValue("workflowName"); 
         
         VRASystem.doSecure('', '', '', function(xhr) {
             var jsonResponse = JSON.parse(xhr.responseText);
@@ -111,7 +113,7 @@ VRAGenericData = {
                         for (var key in allDocuments) {
                             try {
                                 var headerNode = allDocuments[key].getElementsByTagName("header")[0];
-                                if (headerNode.getElementsByTagName("resource-definition")[0].getAttribute("name") == workflowProtocolUri) {
+                                if (headerNode.getElementsByTagName("resource-definition")[0].getAttribute("name") == workflowName) {
                                     var elementNode = headerNode.parentNode;
                                     
                                     var reference = "";

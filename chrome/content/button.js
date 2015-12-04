@@ -74,7 +74,9 @@ VRAButton = {
                     });
 
                     for (var key in allWorkflowEntries) {
-                        newDocumentMenuItem.appendChild(GenericSystem.createMenuItem(allWorkflowEntries[key].getAttribute("uri"), allWorkflowEntries[key].getAttribute("name")));
+                        if (allWorkflowEntries[key].getAttribute("status") < 4) {
+                            newDocumentMenuItem.appendChild(GenericSystem.createMenuItem(allWorkflowEntries[key].getAttribute("uri"), allWorkflowEntries[key].getAttribute("label")));
+                        }
                     }
                 }
             }
