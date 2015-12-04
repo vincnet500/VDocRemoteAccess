@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://vdocremoteaccess/skin/style.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://vdocremoteaccess/locale/activedocuments.dtd">
+
+<window xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&activedocuments.title;" id="vra-activedocuments">
+	<vbox>
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/XMLWriter-1.0.0-min.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/mygenericdata.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/activedocuments.js" />
+        
+        <box id="vra-header">
+			<text value="VDoc Remote Access" />
+		</box>
+		
+        <box id="vra-subheader">
+			<description>
+                &activedocuments.information;
+			</description>
+		</box>
+        
+        <vbox id="vra-loading-panel">
+            <html:div id="vra-loading">
+                <div id="vra-loading-text">&activedocuments.loading;</div>
+                <div id="vra-loading-overlay"></div>
+            </html:div>
+        </vbox>
+        
+        <box orient="vertical">
+			<groupbox>
+				<label value="&activedocuments.workflow;"/>
+				<menulist onselect="VRAGenericData.loadData(VRAActiveDocuments.getXMLObject, VRAActiveDocuments.findData, VRAActiveDocuments.customDataClassName);">
+				  <menupopup id="workflowName">
+				  </menupopup>
+                </menulist>
+            </groupbox>
+            <groupbox>
+                <listbox id="dataTable">
+                  <listhead>
+                    <listheader label="&activedocuments.sys_Reference;" width="150" />
+                    <listheader label="&activedocuments.sys_Title;" width="383" />
+                    <listheader label="&activedocuments.sys_Creator;" width="158" />
+                    <listheader label="&activedocuments.sys_CreationDate;" width="100" />
+                    <listheader label="&activedocuments.sys_CurrentSteps;" width="108" />
+                    <listheader label="&activedocuments.DocumentState;" width="125" />
+                  </listhead>
+                </listbox>
+            </groupbox>
+        </box>
+        
+        <hbox align="right"> 
+            <button oncommand="VRAGenericData.loadData(VRAActiveDocuments.getXMLObject, VRAActiveDocuments.findData, VRAActiveDocuments.customDataClassName);">
+			  <description>&activedocuments.refresh;</description>
+			</button>
+            <button oncommand="window.close();">
+			  <description>&activedocuments.close;</description>
+			</button>
+		</hbox>
+        
+        <box id="vra-footer">
+		</box>
+	</vbox>
+</window>

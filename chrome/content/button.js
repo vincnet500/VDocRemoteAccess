@@ -102,6 +102,12 @@ VRAButton = {
         else if (a == 'mydelayedtasks') {
             window.open('chrome://vdocremoteaccess/content/mydelayedtasks.xul', '', 'chrome,centerscreen');
         }
+        else if (a == 'myinterveneddocuments') {
+            window.open('chrome://vdocremoteaccess/content/myinterveneddocuments.xul', '', 'chrome,centerscreen');
+        }
+        else if (a == 'activedocuments') {
+            window.open('chrome://vdocremoteaccess/content/activedocuments.xul', '', 'chrome,centerscreen');
+        }
         else {
             var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
             VRASystem.doSecure(serverName, GenericSystem.getPref("login"), GenericSystem.getPref("password"), function(xhr) {

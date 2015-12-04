@@ -3,5 +3,7 @@
 <!ENTITY button.createDocument "Create a new document">
 <!ENTITY button.mycurrenttasks "My current tasks">
 <!ENTITY button.mydelayedtasks "My delayed tasks">
+<!ENTITY button.myinterveneddocuments "Documents on which I have contributed">
+<!ENTITY button.activedocuments "Active documents">
 <!ENTITY button.options "Options">
 <!ENTITY button.about "About">

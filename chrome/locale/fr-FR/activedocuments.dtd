@@ -1,0 +1,12 @@
+<!ENTITY activedocuments.title "Tous les documents actifs">
+<!ENTITY activedocuments.close "Fermer">
+<!ENTITY activedocuments.workflow "Processus">
+<!ENTITY activedocuments.loading "Veuillez patienter">
+<!ENTITY activedocuments.sys_Reference "Référence">
+<!ENTITY activedocuments.sys_Title "Titre">
+<!ENTITY activedocuments.sys_Creator "Créateur">
+<!ENTITY activedocuments.sys_CreationDate "Date de création">
+<!ENTITY activedocuments.sys_CurrentSteps "Etape courante">
+<!ENTITY activedocuments.DocumentState "Etat du document">
+<!ENTITY activedocuments.refresh "Rafraichir">
+<!ENTITY activedocuments.information "Vous trouvez ici une liste de tous les documents actifs. Les documents d'aujourd'hui sont mis en évidence en gras.">

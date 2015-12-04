@@ -1,5 +1,5 @@
 <!ENTITY mycurrenttasks.title "My current tasks">
-<!ENTITY mycurrenttasks.close "Fermer">
+<!ENTITY mycurrenttasks.close "Close">
 <!ENTITY mycurrenttasks.workflow "Workflow">
 <!ENTITY mycurrenttasks.loading "Please wait">
 <!ENTITY mycurrenttasks.sys_Reference "Reference">

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://vdocremoteaccess/skin/style.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://vdocremoteaccess/locale/myinterveneddocuments.dtd">
+
+<window xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&myinterveneddocuments.title;" id="vra-myinterveneddocuments">
+	<vbox>
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/XMLWriter-1.0.0-min.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/mygenericdata.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/myinterveneddocuments.js" />
+        
+        <box id="vra-header">
+			<text value="VDoc Remote Access" />
+		</box>
+		
+        <box id="vra-subheader">
+			<description>
+                &myinterveneddocuments.information;
+			</description>
+		</box>
+        
+        <vbox id="vra-loading-panel">
+            <html:div id="vra-loading">
+                <div id="vra-loading-text">&myinterveneddocuments.loading;</div>
+                <div id="vra-loading-overlay"></div>
+            </html:div>
+        </vbox>
+        
+        <box orient="vertical">
+			<groupbox>
+				<label value="&myinterveneddocuments.workflow;"/>
+				<menulist onselect="VRAGenericData.loadData(VRAIntervenedDocuments.getXMLObject, VRAIntervenedDocuments.findData, VRAIntervenedDocuments.customDataClassName);">
+				  <menupopup id="workflowName">
+				  </menupopup>
+                </menulist>
+            </groupbox>
+            <groupbox>
+                <listbox id="dataTable">
+                  <listhead>
+                    <listheader label="&myinterveneddocuments.sys_Reference;" width="150" />
+                    <listheader label="&myinterveneddocuments.sys_Title;" width="375" />
+                    <listheader label="&myinterveneddocuments.sys_Creator;" width="158" />
+                    <listheader label="&myinterveneddocuments.sys_CreationDate;" width="108" />
+                    <listheader label="&myinterveneddocuments.sys_CurrentSteps;" width="108" />
+                    <listheader label="&myinterveneddocuments.DocumentState;" width="125" />
+                  </listhead>
+                </listbox>
+            </groupbox>
+        </box>
+        
+        <hbox align="right"> 
+            <button oncommand="VRAGenericData.loadData(VRAIntervenedDocuments.getXMLObject, VRAIntervenedDocuments.findData, VRAIntervenedDocuments.customDataClassName);">
+			  <description>&myinterveneddocuments.refresh;</description>
+			</button>
+            <button oncommand="window.close();">
+			  <description>&myinterveneddocuments.close;</description>
+			</button>
+		</hbox>
+        
+        <box id="vra-footer">
+		</box>
+	</vbox>
+</window>

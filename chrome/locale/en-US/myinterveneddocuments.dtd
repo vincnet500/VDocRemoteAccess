@@ -1,0 +1,12 @@
+<!ENTITY myinterveneddocuments.title "Documents on which I have contributed">
+<!ENTITY myinterveneddocuments.close "Fermer">
+<!ENTITY myinterveneddocuments.workflow "Workflow">
+<!ENTITY myinterveneddocuments.loading "Please wait">
+<!ENTITY myinterveneddocuments.sys_Reference "Reference">
+<!ENTITY myinterveneddocuments.sys_Title "Title">
+<!ENTITY myinterveneddocuments.sys_Creator "Creator">
+<!ENTITY myinterveneddocuments.sys_CreationDate "Creation Date">
+<!ENTITY myinterveneddocuments.sys_CurrentSteps "Current Step">
+<!ENTITY myinterveneddocuments.DocumentState "Document State">
+<!ENTITY myinterveneddocuments.refresh "Refresh">
+<!ENTITY myinterveneddocuments.information "Please find here a list of all documents on which you have contributed.">

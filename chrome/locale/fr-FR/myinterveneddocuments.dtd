@@ -1,0 +1,12 @@
+<!ENTITY myinterveneddocuments.title "Les documents sur lequels je suis intervenu">
+<!ENTITY myinterveneddocuments.close "Fermer">
+<!ENTITY myinterveneddocuments.workflow "Processus">
+<!ENTITY myinterveneddocuments.loading "Veuillez patienter">
+<!ENTITY myinterveneddocuments.sys_Reference "Référence">
+<!ENTITY myinterveneddocuments.sys_Title "Titre">
+<!ENTITY myinterveneddocuments.sys_Creator "Créateur">
+<!ENTITY myinterveneddocuments.sys_CreationDate "Date de création">
+<!ENTITY myinterveneddocuments.sys_CurrentSteps "Etape courante">
+<!ENTITY myinterveneddocuments.DocumentState "Etat du document">
+<!ENTITY myinterveneddocuments.refresh "Rafraichir">
+<!ENTITY myinterveneddocuments.information "Vous trouvez ici une liste des documents sur lequels vous êtes intervenu.">

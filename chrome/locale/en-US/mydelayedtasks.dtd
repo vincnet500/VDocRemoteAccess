@@ -1,5 +1,5 @@
 <!ENTITY mydelayedtasks.title "My delayed tasks">
-<!ENTITY mydelayedtasks.close "Fermer">
+<!ENTITY mydelayedtasks.close "Close">
 <!ENTITY mydelayedtasks.workflow "Workflow">
 <!ENTITY mydelayedtasks.loading "Please wait">
 <!ENTITY mydelayedtasks.sys_Reference "Reference">
