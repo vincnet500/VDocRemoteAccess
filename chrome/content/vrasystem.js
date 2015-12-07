@@ -80,7 +80,7 @@ VRASystem = {
     
     getWorkflowEntryLabel : function(workflowEntry) {
         var workflowStatus = workflowEntry.getAttribute("status");
-        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") || (workflowStatus < 4) ) {
+        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") ) {
             return workflowEntry.getAttribute("name");
         }
         else {
@@ -90,7 +90,7 @@ VRASystem = {
     
     getWorkflowEntryName : function(workflowEntry) {
         var workflowStatus = workflowEntry.getAttribute("status");
-        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") || (workflowStatus < 4) ) {
+        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") ) {
             return workflowEntry.getAttribute("protocol-uri");
         }
         else {
