@@ -76,6 +76,26 @@ VRASystem = {
         catch (e) {
             GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.error.message"));
         }
+    },
+    
+    getWorkflowEntryLabel : function(workflowEntry) {
+        var workflowStatus = workflowEntry.getAttribute("status");
+        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") || (workflowStatus < 4) ) {
+            return workflowEntry.getAttribute("name");
+        }
+        else {
+            return workflowEntry.getAttribute("label");
+        }
+    },
+    
+    getWorkflowEntryName : function(workflowEntry) {
+        var workflowStatus = workflowEntry.getAttribute("status");
+        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") || (workflowStatus < 4) ) {
+            return workflowEntry.getAttribute("protocol-uri");
+        }
+        else {
+            return workflowEntry.getAttribute("name");
+        }
     }
 	
 }

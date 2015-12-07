@@ -32,7 +32,7 @@ VRAGenericData = {
                 });
                 for (var key in allWorkflows) {
                     if (allWorkflows[key].getElementsByTagName("header")[0].getAttribute("status") < 4) {
-                        localWorkflowPopup.appendChild(GenericSystem.createMenuItem(allWorkflows[key].getElementsByTagName("header")[0].getAttribute("name"), allWorkflows[key].getElementsByTagName("header")[0].getAttribute("label")));
+                        localWorkflowPopup.appendChild(GenericSystem.createMenuItem(VRASystem.getWorkflowEntryName(allWorkflows[key].getElementsByTagName("header")[0]), VRASystem.getWorkflowEntryLabel(allWorkflows[key].getElementsByTagName("header")[0])));
                     }
                 }
                 GenericSystem.showLoading('vra-loading', false);

@@ -74,8 +74,10 @@ VRAButton = {
                     });
 
                     for (var key in allWorkflowEntries) {
-                        if (allWorkflowEntries[key].getAttribute("status") < 4) {
-                            newDocumentMenuItem.appendChild(GenericSystem.createMenuItem(allWorkflowEntries[key].getAttribute("uri"), allWorkflowEntries[key].getAttribute("label")));
+                        // Handle status if we have it in flow result
+                        var workflowStatus = allWorkflowEntries[key].getAttribute("status");
+                        if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") || (workflowStatus < 4) ) {
+                            newDocumentMenuItem.appendChild(GenericSystem.createMenuItem(allWorkflowEntries[key].getAttribute("uri"), VRASystem.getWorkflowEntryLabel(allWorkflowEntries[key])));
                         }
                     }
                 }
