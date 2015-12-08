@@ -80,9 +80,12 @@
     margin-top: 10px;
 }
 
-#vra-mycurrenttasks, #vra-mydelayedtasks, #vra-myinterveneddocuments, #vra-activedocuments {
+#vra-mycurrenttasks, #vra-mydelayedtasks, #vra-myinterveneddocuments, #vra-activedocuments, #vra-advancedoptions {
     width: 1024px;
 }
 #dataTable {
     height: 400px;   
+}
+#shortDataTable {
+    height: 200px;   
 }

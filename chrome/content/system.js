@@ -133,6 +133,34 @@ GenericSystem = {
         return "";
 	},
     
+    setPref : function(pref, value) {
+		var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+		var branch = prefs.getBranch("extensions.vdocremoteaccess@vincnet500.com.");
+        try {
+            branch.setCharPref(pref, value);
+        }
+        catch (e) {}
+	},
+    
+    getBoolPref : function(pref) {
+		var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+		var branch = prefs.getBranch("extensions.vdocremoteaccess@vincnet500.com.");
+        try {
+            return branch.getBoolPref(pref);
+        }
+        catch (e) {}
+        return "";
+	},
+    
+    setBoolPref : function(pref, value) {
+		var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
+		var branch = prefs.getBranch("extensions.vdocremoteaccess@vincnet500.com.");
+        try {
+            branch.setBoolPref(pref, value);
+        }
+        catch (e) {}
+	},
+    
     basicAlert: function(message) {
         var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
               .getService(Components.interfaces.nsIPromptService);
@@ -173,9 +201,17 @@ GenericSystem = {
     
     openInANewTab : function(link) {
         var win = Components.classes['@mozilla.org/appshell/window-mediator;1']
-          .getService(Components.interfaces.nsIWindowMediator)
-          .getMostRecentWindow('navigator:browser');
+            .getService(Components.interfaces.nsIWindowMediator)
+            .getMostRecentWindow('navigator:browser');
         win.openUILinkIn(link, 'tab');   
+    },
+    
+    addURLParameter : function(baseURL, parameterToAdd) {
+        var concatChar = "&";
+        if (baseURL.indexOf('?') == -1) {
+            concatChar = '?';   
+        }
+        return baseURL + concatChar + parameterToAdd;
     }
 	
 }

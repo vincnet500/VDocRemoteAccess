@@ -1,0 +1,9 @@
+<!ENTITY advancedoptions.title "Options">
+<!ENTITY advancedoptions.loading "Veuillez patienter">
+<!ENTITY advancedoptions.serverName "Nom du serveur">
+<!ENTITY advancedoptions.serverURL "URL du serveur">
+<!ENTITY advancedoptions.addNewServer "Nouveau serveur">
+<!ENTITY advancedoptions.validate "Valider">
+<!ENTITY advancedoptions.removeServer "Supprimer le serveur">
+<!ENTITY advancedoptions.otheroptions "Autres options">
+<!ENTITY advancedoptions.workflowStatusProductionOnly "Ne gérer que les processus en production">

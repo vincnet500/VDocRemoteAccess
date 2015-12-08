@@ -6,3 +6,6 @@
 <!ENTITY preferences.password "Mot de passe :">
 <!ENTITY preferences.testconnection "Tester la connexion au serveur">
 <!ENTITY preferences.loading "Veuillez patienter">
+<!ENTITY preferences.serverconfigurationcaption "Configuration d'un serveur VDoc">
+<!ENTITY preferences.serverconfigurationinput "Libellé de la configuration">
+<!ENTITY preferences.validate "Valider">

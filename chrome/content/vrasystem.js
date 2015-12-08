@@ -5,14 +5,13 @@ VRASystem = {
 		
 	},
 	
-	initCommonList: function(listName, token, module, cmd, xmlObject, resultPath, eraseExistingValues, callback, endCallback) {
+	initCommonList: function(serverName, listName, token, module, cmd, xmlObject, resultPath, eraseExistingValues, callback, endCallback) {
 		var popup = document.getElementById(listName);
         if (eraseExistingValues) {
             popup.innerHTML = '';
             popup.parentNode.value = '';
         }
-        var serverName = VRASystem.validateServerName(GenericSystem.getPref("serverName"));
-		var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 		xhr.open("POST", serverName + "navigation/flow?module=" + module + "&cmd=" + cmd + "&killsession=false&_AuthenticationKey=" + token, true);
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
@@ -45,17 +44,7 @@ VRASystem = {
     },
     
     doSecure : function(serverName, login, password, callback) {
-        if (serverName == '') {
-            serverName = GenericSystem.getPref("serverName");
-        }
         serverName = VRASystem.validateServerName(serverName);
-        if (login == '') {
-            login = GenericSystem.getPref("login");
-        }
-        if (password == '') {
-            password = GenericSystem.getPref("password");
-        }
-        
         try {
             var root = new Object();
 		    root.authenticate = new Object();

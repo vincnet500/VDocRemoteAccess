@@ -18,6 +18,7 @@
 		
         <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
         <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/advancedoptions.js" />
 		<script type="application/javascript" src="chrome://vdocremoteaccess/content/options.js" />
 		
 		<box id="vra-header">
@@ -32,7 +33,12 @@
         </vbox>
 		
 		<box orient="vertical">
-			<groupbox id="vra-server">
+			<groupbox id="vra-serverconfiguration">
+				<caption label="&preferences.serverconfigurationcaption;" />
+				<label control="configurationName" value="&preferences.serverconfigurationinput;"/>
+				<textbox id="configurationName" defaultValue="My new server" size="70" />
+			</groupbox>
+            <groupbox id="vra-server">
 				<caption label="&preferences.servercaption;" />
 				<label control="serverName" value="&preferences.serverinput;"/>
 				<textbox id="serverName" preference="vra-serverName" defaultValue="http://servername/vdoc" size="70" />
@@ -49,6 +55,9 @@
          <hbox align="right"> 
 			<button oncommand="VRAOptions.testConnection(document.getElementById('serverName').value, document.getElementById('login').value, document.getElementById('password').value);">
 			  <description>&preferences.testconnection;</description>
+			</button>
+             <button oncommand="VRAOptions.validate(document.getElementById('configurationName').value, document.getElementById('serverName').value, document.getElementById('login').value, document.getElementById('password').value);">
+			  <description>&preferences.validate;</description>
 			</button>
 		</hbox>
 		

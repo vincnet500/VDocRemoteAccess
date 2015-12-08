@@ -1,0 +1,9 @@
+<!ENTITY advancedoptions.title "Options">
+<!ENTITY advancedoptions.loading "Please wait">
+<!ENTITY advancedoptions.serverName "Server Name">
+<!ENTITY advancedoptions.serverURL "Server URL">
+<!ENTITY advancedoptions.addNewServer "New server">
+<!ENTITY advancedoptions.validate "Validate">
+<!ENTITY advancedoptions.removeServer "Remove server">
+<!ENTITY advancedoptions.otheroptions "Other options">
+<!ENTITY advancedoptions.workflowStatusProductionOnly "Only handle workflows in production status">

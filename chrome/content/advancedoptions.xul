@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://vdocremoteaccess/skin/style.css" type="text/css"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://vdocremoteaccess/locale/advancedoptions.dtd">
+
+<prefwindow xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&advancedoptions.title;" id="vra-advancedoptions">
+	<prefpane id="vra-prefpane">
+		
+		<preferences>
+			<preference id="vra-servers" name="extensions.vdocremoteaccess@vincnet500.com.servers" type="string" />
+			<preference id="vra-workflowStatusProductionOnly" name="extensions.vdocremoteaccess@vincnet500.com.workflowStatusProductionOnly" type="bool" />
+		</preferences>
+        <stringbundleset id="VRAStringbundleset">
+			<stringbundle id="vra-string-bundle" src="chrome://vdocremoteaccess/locale/vra.properties"/>
+		</stringbundleset>
+        
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/advancedoptions.js" />
+		
+		<box id="vra-header">
+			<text value="VDoc Remote Access" />
+		</box>
+        
+        <vbox id="vra-loading-panel">
+            <html:div id="vra-loading">
+                <div id="vra-loading-text">&advancedoptions.loading;</div>
+                <div id="vra-loading-overlay"></div>
+            </html:div>
+        </vbox>
+		
+		<box orient="vertical">
+			<groupbox>
+                <listbox id="shortDataTable">
+                  <listhead>
+                    <listheader label="&advancedoptions.serverName;" width="512" />
+                    <listheader label="&advancedoptions.serverURL;" width="512" />
+                  </listhead>
+                </listbox>
+            </groupbox>
+            <groupbox id="vra-otheroptions">
+				<caption label="&advancedoptions.otheroptions;" />
+				<checkbox id="workflowStatusProductionOnly" label="&advancedoptions.workflowStatusProductionOnly;" preference="vra-workflowStatusProductionOnly" />
+			</groupbox>
+		</box>
+        
+         <hbox align="right"> 
+			<button oncommand="VRAAdvancedOptions.addNewServer();">
+			  <description>&advancedoptions.addNewServer;</description>
+			</button>
+            <button oncommand="VRAAdvancedOptions.removeServer();">
+			  <description>&advancedoptions.removeServer;</description>
+			</button>
+            <button oncommand="VRAAdvancedOptions.validate();">
+			  <description>&advancedoptions.validate;</description>
+			</button>
+		</hbox>
+		
+	</prefpane>
+</prefwindow>
