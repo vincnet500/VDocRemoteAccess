@@ -8,28 +8,32 @@ GenericSystem = {
     appendListBox : function(listname, className, internalValue, values) {
         const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
         var listBox = document.getElementById(listname);
-        var listItem = document.createElementNS(XUL_NS, "listitem");
-        listItem.setAttribute("uri", internalValue);
-        for (var key in values) {
-            var listCell = document.createElementNS(XUL_NS, "listcell");
-            listCell.setAttribute("label", values[key]);
-            if (className != '') {
-                listCell.setAttribute("class", className);
+        if (listBox != null) {
+            var listItem = document.createElementNS(XUL_NS, "listitem");
+            listItem.setAttribute("uri", internalValue);
+            for (var key in values) {
+                var listCell = document.createElementNS(XUL_NS, "listcell");
+                listCell.setAttribute("label", values[key]);
+                if (className != '') {
+                    listCell.setAttribute("class", className);
+                }
+                listItem.appendChild(listCell);
             }
-            listItem.appendChild(listCell);
+            listBox.appendChild(listItem);
         }
-        listBox.appendChild(listItem);
     },
     
     cleanListBox : function(listname) {
         var listBox = document.getElementById(listname);
-        var allChildNodes = listBox.childNodes;
-        var allChildNodesLength = allChildNodes.length;
-        var headNode = listBox.firstChild;
-        while (listBox.firstChild) {
-            listBox.removeChild(listBox.firstChild);
+        if (listBox != null) {
+            var allChildNodes = listBox.childNodes;
+            var allChildNodesLength = allChildNodes.length;
+            var headNode = listBox.firstChild;
+            while (listBox.firstChild) {
+                listBox.removeChild(listBox.firstChild);
+            }
+            listBox.appendChild(headNode);
         }
-        listBox.appendChild(headNode);
     },
 	
 	createMenuItem: function(aKey, aLabel) {

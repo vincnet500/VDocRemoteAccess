@@ -8,10 +8,13 @@ VRAOptions = {
         document.getElementById("serverName").value = parameters.serverURL;
         document.getElementById("login").value = parameters.serverLogin;
         document.getElementById("password").value = parameters.serverPassword;
-                
-		// Clean dialog default buttons
-        document.documentElement.getButton("accept").setAttribute("style", "display:none;");
-        document.documentElement.getButton("cancel").setAttribute("style", "display:none;");
+          
+        try {
+            // Clean dialog default buttons
+            document.documentElement.getButton("accept").setAttribute("style", "display:none;");
+            document.documentElement.getButton("cancel").setAttribute("style", "display:none;");
+        }
+        catch (e) {}
         
         if (mustCenter) {
             var w = (screen.availWidth/2) - (window.innerWidth/2);
@@ -23,7 +26,7 @@ VRAOptions = {
     testConnection: function(serverName, login, password) {
         GenericSystem.showLoading("vra-loading", true);
         var serverName = VRASystem.validateServerName(serverName);
-        VRASystem.doSecure(serverName, login, password, function(xhr) {
+        VRASystem.doSecure(serverName, login, password, function(serverName, xhr) {
             var jsonResponse = JSON.parse(xhr.responseText);
             try {
                 var token = jsonResponse.authenticate.body.token["@key"];

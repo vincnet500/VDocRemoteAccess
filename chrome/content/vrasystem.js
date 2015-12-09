@@ -29,7 +29,7 @@ VRASystem = {
                     for (var key = 0; key < itNote.length; key++) {
                         callback(popup, itNote[key]);
                     }
-                    endCallback();
+                    endCallback(serverName);
 				}
 			}
 		}
@@ -57,7 +57,7 @@ VRASystem = {
             xhr.open("POST", serverName + "navigation/flow?module=portal&cmd=authenticate&killsession=false&flowmode=json", true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
-                    callback(xhr);
+                    callback(serverName, xhr);
                 }
             }
             xhr.send(JSON.stringify(root));

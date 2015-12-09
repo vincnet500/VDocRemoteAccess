@@ -2,9 +2,12 @@
 VRAAbout = {
 	
 	init: function(mustCenter) {
-        // Clean dialog default buttons
-        document.documentElement.getButton("accept").setAttribute("style", "display:none;");
-        document.documentElement.getButton("cancel").setAttribute("style", "display:none;");
+        try {
+            // Clean dialog default buttons
+            document.documentElement.getButton("accept").setAttribute("style", "display:none;");
+            document.documentElement.getButton("cancel").setAttribute("style", "display:none;");
+        }
+        catch (e) {}
         
         if (mustCenter) {
             var w = (screen.availWidth/2) - (window.innerWidth/2);

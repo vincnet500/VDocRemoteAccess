@@ -2,13 +2,12 @@
 VRAAdvancedOptions = {
 	
 	init: function(mustCenter) {
-		// Clean dialog default buttons
-        if (document.documentElement.getButton("accept") != null) {
+		try {
+            // Clean dialog default buttons
             document.documentElement.getButton("accept").setAttribute("style", "display:none;");
-        }
-        if (document.documentElement.getButton("cancel") != null) {
             document.documentElement.getButton("cancel").setAttribute("style", "display:none;");
         }
+        catch (e) {}
         
         if (mustCenter) {
             var w = (screen.availWidth/2) - (window.innerWidth/2);

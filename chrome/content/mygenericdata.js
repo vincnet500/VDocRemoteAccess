@@ -11,7 +11,7 @@ VRAGenericData = {
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(xhr) {
+            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, xhr) {
                 var jsonResponse = JSON.parse(xhr.responseText);
                 var token = jsonResponse.authenticate.body.token["@key"];
 
@@ -28,7 +28,7 @@ VRAGenericData = {
                 VRASystem.initCommonList(serverName, "workflowName", token, "workflow", "cmd", xw, "view/body/workflow", (indexServer == allSC.servers.length - 1), function(popup, elem)  {
                     localWorkflowPopup = popup;
                     allWorkflows.push(elem);
-                }, function() {
+                }, function(serverName) {
                     if (indexServer == allSC.servers.length - 1) {
                         allWorkflows.sort(function(a, b) {
                             if (a.getElementsByTagName("header")[0].getAttribute("name").toLowerCase() <= b.getElementsByTagName("header")[0].getAttribute("name").toLowerCase())
@@ -82,7 +82,7 @@ VRAGenericData = {
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(xhr) {
+            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, xhr) {
                 var jsonResponse = JSON.parse(xhr.responseText);
                 var token = jsonResponse.authenticate.body.token["@key"];
 
@@ -99,6 +99,7 @@ VRAGenericData = {
                             for (var key in elementArray) {
                                 var documentElement = elementArray[key];
                                 try {
+                                    documentElement.setAttribute("serverName", serverName);
                                     allDocuments.push(documentElement);
                                 }
                                 catch(e) {}
@@ -130,6 +131,7 @@ VRAGenericData = {
                                 for (var key in cleanedDocuments) {
                                     try {
                                         var headerNode = cleanedDocuments[key].getElementsByTagName("header")[0];
+                                        var localServerName = cleanedDocuments[key].getAttribute("serverName");
                                         var elementNode = headerNode.parentNode;
 
                                         var reference = "";
@@ -170,7 +172,7 @@ VRAGenericData = {
                                         if (itemUri.charAt(0) === '/') {
                                              itemUri = itemUri.substr(1);
                                         }
-                                        GenericSystem.appendListBox("dataTable", customDataClassName(elementNode), GenericSystem.addURLParameter(serverName + itemUri, "_AuthenticationKey=" + token), [reference, (title.length > 60?title.substring(0, 57) + "...":title), creator, creationDate, currentSteps, documentState]);
+                                        GenericSystem.appendListBox("dataTable", customDataClassName(elementNode), GenericSystem.addURLParameter(localServerName + itemUri, "_AuthenticationKey=" + token), [reference, (title.length > 60?title.substring(0, 57) + "...":title), creator, creationDate, currentSteps, documentState]);
                                     }
                                     catch (e) {}
                                 }
