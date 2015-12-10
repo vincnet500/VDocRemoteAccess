@@ -12,6 +12,9 @@
 	<script type="application/javascript" src="chrome://vdocremoteaccess/content/button.js"/>
 	
     <window id="main-window">
+        <preferences>
+			<preference id="vra-tokens" name="extensions.vdocremoteaccess@vincnet500.com.tokens" type="string" />
+		</preferences>
         <stringbundleset id="VRAStringbundleset">
             <stringbundle id="vra-string-bundle" src="chrome://vdocremoteaccess/locale/vra.properties"/>
         </stringbundleset>

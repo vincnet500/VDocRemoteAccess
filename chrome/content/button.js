@@ -2,6 +2,7 @@
 VRAButton = {
 	
 	init: function () {
+        GenericSystem.setPref("tokens", "");
 		this.addButton();
 	},
 	
@@ -44,12 +45,9 @@ VRAButton = {
             var xmlString = xw.flush();
 
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, xhr) {
-                var jsonResponse = JSON.parse(xhr.responseText);
-                var token = jsonResponse.authenticate.body.token["@key"];
-
+            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, token) {
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=true&_AuthenticationKey=" + token, true);
+                xhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4) {
                         var parser = new DOMParser();
@@ -61,6 +59,7 @@ VRAButton = {
                             try {
                                 var workflowHeader = workflowElement.getElementsByTagName("header")[0];
                                 workflowHeader.setAttribute("serverName", serverName);
+                                workflowHeader.setAttribute("token", token);
                                 allWorkflowEntries.push(workflowHeader);
                             }
                             catch(e) {}
@@ -83,13 +82,14 @@ VRAButton = {
                                 // Handle status if we have it in flow result
                                 var workflowStatus = allWorkflowEntries[key].getAttribute("status");
                                 var localServerName = allWorkflowEntries[key].getAttribute("serverName");
+                                var localToken = allWorkflowEntries[key].getAttribute("token");
                                 var onlyProductionWorkflows = GenericSystem.getBoolPref("workflowStatusProductionOnly");
                                 if ( (workflowStatus == null) || (typeof(workflowStatus) == "undefined") || (onlyProductionWorkflows && workflowStatus == 3) || (!onlyProductionWorkflows && workflowStatus < 4) ) {
                                     var itemUri = allWorkflowEntries[key].getAttribute("uri");
                                     if (itemUri.charAt(0) === '/') {
                                          itemUri = itemUri.substr(1);
                                     }
-                                    newDocumentMenuItem.appendChild(GenericSystem.createMenuItem(GenericSystem.addURLParameter(localServerName + itemUri, "_AuthenticationKey=" + token), VRASystem.getWorkflowEntryLabel(allWorkflowEntries[key])));
+                                    newDocumentMenuItem.appendChild(GenericSystem.createMenuItem(GenericSystem.addURLParameter(localServerName + itemUri, "_AuthenticationKey=" + localToken), VRASystem.getWorkflowEntryLabel(allWorkflowEntries[key])));
                                 }
                             }
                         }

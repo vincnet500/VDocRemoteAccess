@@ -26,16 +26,9 @@ VRAOptions = {
     testConnection: function(serverName, login, password) {
         GenericSystem.showLoading("vra-loading", true);
         var serverName = VRASystem.validateServerName(serverName);
-        VRASystem.doSecure(serverName, login, password, function(serverName, xhr) {
-            var jsonResponse = JSON.parse(xhr.responseText);
-            try {
-                var token = jsonResponse.authenticate.body.token["@key"];
-                if ( (typeof(token) != "undefined") && (token != '') ) {
-                    GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.success.message"));
-                }
-            }
-            catch (e) {
-                GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.error.message"));
+        VRASystem.doSecure(serverName, login, password, function(serverName, token) {
+            if ( (typeof(token) != "undefined") && (token != '') ) {
+                GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.success.message"));
             }
         });
         GenericSystem.showLoading("vra-loading", false);
@@ -51,6 +44,9 @@ VRAOptions = {
             parameters.serverURL = serverName;
             parameters.serverLogin = login;
             parameters.serverPassword = password;
+            
+            VRASystem.clearLocalCacheToken(VRASystem.validateServerName(serverName));
+            console.error(GenericSystem.getPref("tokens"));
             
             window.close();
         }
