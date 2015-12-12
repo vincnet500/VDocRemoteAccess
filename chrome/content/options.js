@@ -26,7 +26,7 @@ VRAOptions = {
     testConnection: function(serverName, login, password) {
         GenericSystem.showLoading("vra-loading", true);
         var serverName = VRASystem.validateServerName(serverName);
-        VRASystem.doSecure(serverName, login, password, function(serverName, token) {
+        VRASystem.doSecure(null, serverName, login, password, function(configurationName, serverName, token) {
             if ( (typeof(token) != "undefined") && (token != '') ) {
                 GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.success.message"));
             }

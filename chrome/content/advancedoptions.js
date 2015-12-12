@@ -18,20 +18,22 @@ VRAAdvancedOptions = {
         this.refreshServerViews();
         
         var listBox = document.getElementById("shortDataTable");
-        listBox.addEventListener("dblclick", function(event) {
-            var target = event.target;
-            while (target && target.localName != "listitem") {
-                target = target.parentNode;
-            }
-            if (!target) {
-                return;
-            }
-            
-            var configurationName = target.getAttribute("uri");
-            var configJSON = VRAAdvancedOptions.getServerConfiguration(configurationName);
-            openDialog("chrome://vdocremoteaccess/content/options.xul", "dlg", "modal,chrome,centerscreen", "edit", configJSON);
-            VRAAdvancedOptions.updateServer(configurationName, configJSON);
-        }, false);
+        if (listBox != null) {
+            listBox.addEventListener("dblclick", function(event) {
+                var target = event.target;
+                while (target && target.localName != "listitem") {
+                    target = target.parentNode;
+                }
+                if (!target) {
+                    return;
+                }
+
+                var configurationName = target.getAttribute("uri");
+                var configJSON = VRAAdvancedOptions.getServerConfiguration(configurationName);
+                openDialog("chrome://vdocremoteaccess/content/options.xul", "dlg", "modal,chrome,centerscreen", "edit", configJSON);
+                VRAAdvancedOptions.updateServer(configurationName, configJSON);
+            }, false);
+        }
 	},
     
     addNewServer : function() {

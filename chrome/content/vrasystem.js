@@ -43,11 +43,11 @@ VRASystem = {
         return serverName;
     },
     
-    doSecure : function(serverName, login, password, callback) {
+    doSecure : function(configurationName, serverName, login, password, callback) {
         serverName = VRASystem.validateServerName(serverName);
         var cachedToken = this.getLocalCacheToken(serverName);
         if ( (cachedToken != null) && (cachedToken != '') ) {
-            callback(serverName, cachedToken);
+            callback(configurationName, serverName, cachedToken);
         }
         else {
             try {
@@ -65,7 +65,7 @@ VRASystem = {
                         var jsonResponse = JSON.parse(xhr.responseText);
                         var token = jsonResponse.authenticate.body.token["@key"];
                         VRASystem.setLocalCacheToken(serverName, token);
-                        callback(serverName, token);
+                        callback(configurationName, serverName, token);
                     }
                 }
                 xhr.send(JSON.stringify(root));

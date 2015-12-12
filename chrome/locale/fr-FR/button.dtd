@@ -1,9 +1,11 @@
 <!ENTITY button.vdocremoteaccess "VDoc Remote Access">
 <!ENTITY button.tooltip "Cliquez ici pour accéder à vos tâches en cours">
 <!ENTITY button.createDocument "Créer un nouveau document">
+<!ENTITY button.directAccess "Accéder à mes serveurs">
 <!ENTITY button.mycurrenttasks "Mes tâches en cours">
 <!ENTITY button.mydelayedtasks "Mes tâches en retard">
 <!ENTITY button.myinterveneddocuments "Les documents sur lequels je suis intervenu">
 <!ENTITY button.activedocuments "Les documents actifs">
+<!ENTITY button.favorites "Favoris">
 <!ENTITY button.options "Options">
 <!ENTITY button.about "A propos de">

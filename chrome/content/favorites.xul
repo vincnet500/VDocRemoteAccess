@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://vdocremoteaccess/skin/style.css" type="text/css"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://vdocremoteaccess/locale/favorites.dtd">
+
+<prefwindow xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&favorites.title;" id="vra-favoritewin">
+	<prefpane id="vra-prefpane">
+		
+		<preferences>
+			<preference id="vra-defaultWorkflowName" name="extensions.vdocremoteaccess@vincnet500.com.defaultWorkflowName" type="string" />
+		</preferences>
+        <stringbundleset id="VRAStringbundleset">
+			<stringbundle id="vra-string-bundle" src="chrome://vdocremoteaccess/locale/vra.properties"/>
+		</stringbundleset>
+		
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/XMLWriter-1.0.0-min.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/vrasystem.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/system.js" />
+        <script type="application/javascript" src="chrome://vdocremoteaccess/content/advancedoptions.js" />
+		<script type="application/javascript" src="chrome://vdocremoteaccess/content/favorites.js" />
+		
+		<box id="vra-header">
+			<text value="VDoc Remote Access" />
+		</box>
+        
+        <vbox id="vra-loading-panel">
+            <html:div id="vra-loading">
+                <div id="vra-loading-text">&favorites.loading;</div>
+                <div id="vra-loading-overlay"></div>
+            </html:div>
+        </vbox>
+		
+		<box id="vra-subheader">
+			<description>
+			&favorites.information;
+			</description>
+		</box>
+		
+		<box orient="vertical">
+			<groupbox id="vra-favorites">
+				<caption label="&favorites.favoritescaption;" />
+				<label value="&favorites.defaultworkflow;"/>
+				<menulist preference="vra-defaultWorkflowName">
+				  <menupopup id="defaultWorkflowName">
+				  </menupopup>
+				</menulist>
+			</groupbox>
+		</box>
+        
+        <box id="vra-footer">
+		</box>
+		
+	</prefpane>
+</prefwindow>

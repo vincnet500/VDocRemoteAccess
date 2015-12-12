@@ -24,6 +24,24 @@ VRAButton = {
 			} catch (e) {}
 		}
 	},
+    
+    loadDirectAccesses : function() {
+        var allSC = VRAAdvancedOptions.getAllServerConfigurations();
+        
+        var directAccessMenuItem = document.getElementById("vra-context-direct-access-menu");
+        directAccessMenuItem.innerHTML = '';
+        directAccessMenuItem.parentNode.value = '';
+        
+        for (var key in allSC.servers) {
+            var serverConfiguration = allSC.servers[key];
+            
+            var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
+                var localServerConfiguration = VRAAdvancedOptions.getServerConfiguration(configurationName);
+                directAccessMenuItem.appendChild(GenericSystem.createMenuItem(GenericSystem.addURLParameter(localServerConfiguration.serverURL, "_AuthenticationKey=" + token), localServerConfiguration.configurationName));
+            });
+        }
+    },
 	
     loadWorkflows : function() {
         var allSC = VRAAdvancedOptions.getAllServerConfigurations();
@@ -45,7 +63,7 @@ VRAButton = {
             var xmlString = xw.flush();
 
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
                 xhr.onreadystatechange = function() {
@@ -137,6 +155,9 @@ VRAButton = {
         }
         else if (a == 'activedocuments') {
             window.open('chrome://vdocremoteaccess/content/activedocuments.xul', '', 'chrome,centerscreen');
+        }
+        else if (a == 'favorites') {
+            window.open('chrome://vdocremoteaccess/content/favorites.xul', '', 'chrome,centerscreen');
         }
         else {
             GenericSystem.openInANewTab(a);

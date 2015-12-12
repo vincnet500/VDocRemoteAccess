@@ -11,7 +11,7 @@ VRAGenericData = {
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
                 var xw = new XMLWriter('UTF-8');
                 xw.writeStartDocument();
                 xw.writeStartElement("view");
@@ -41,6 +41,7 @@ VRAGenericData = {
                     localWorkflowPopup.appendChild(GenericSystem.createMenuItem(VRASystem.getWorkflowEntryName(allWorkflows[key].getElementsByTagName("header")[0]), VRASystem.getWorkflowEntryLabel(allWorkflows[key].getElementsByTagName("header")[0])));
                             }
                         }
+                        localWorkflowPopup.parentNode.value = GenericSystem.getPref("defaultWorkflowName");
                         GenericSystem.showLoading('vra-loading', false);
                     }
                     indexServer++;
@@ -79,7 +80,7 @@ VRAGenericData = {
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
                 var xw = getXMLObject();
                 var subXhr = new XMLHttpRequest();
                 subXhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
