@@ -43,7 +43,7 @@ VRASystem = {
         return serverName;
     },
     
-    doSecure : function(configurationName, serverName, login, password, callback) {
+    doSecure : function(configurationName, serverName, login, password, showError, callback, errorCallback) {
         serverName = VRASystem.validateServerName(serverName);
         var cachedToken = this.getLocalCacheToken(serverName);
         if ( (cachedToken != null) && (cachedToken != '') ) {
@@ -71,7 +71,10 @@ VRASystem = {
                 xhr.send(JSON.stringify(root));
             }
             catch (e) {
-                GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.error.message"));
+                if (showError) {
+                    GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.error.message"));
+                }
+                errorCallback();
             }
         }
     },

@@ -11,7 +11,7 @@ VRAGenericData = {
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, false, function(configurationName, serverName, token) {
                 var xw = new XMLWriter('UTF-8');
                 xw.writeStartDocument();
                 xw.writeStartElement("view");
@@ -46,7 +46,7 @@ VRAGenericData = {
                     }
                     indexServer++;
                 });
-            });
+            }, function() {});
         }
         
         var listBox = document.getElementById("dataTable");
@@ -80,7 +80,7 @@ VRAGenericData = {
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, false, function(configurationName, serverName, token) {
                 var xw = getXMLObject();
                 var subXhr = new XMLHttpRequest();
                 subXhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
@@ -182,7 +182,7 @@ VRAGenericData = {
                     }
                 }
                 subXhr.send(xw.flush());
-            });
+            }, function() {});
         }
     }
 

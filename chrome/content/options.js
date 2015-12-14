@@ -5,7 +5,7 @@ VRAOptions = {
         var parameters = window.arguments[1];
         document.getElementById("configurationName").value = parameters.configurationName;
         document.getElementById("configurationName").disabled = (window.arguments[0] != "new");
-        document.getElementById("serverName").value = parameters.serverURL;
+        document.getElementById("serverName").value = (parameters.serverURL != ""?parameters.serverURL:"http://servername/vdoc");
         document.getElementById("login").value = parameters.serverLogin;
         document.getElementById("password").value = parameters.serverPassword;
           
@@ -26,11 +26,11 @@ VRAOptions = {
     testConnection: function(serverName, login, password) {
         GenericSystem.showLoading("vra-loading", true);
         var serverName = VRASystem.validateServerName(serverName);
-        VRASystem.doSecure(null, serverName, login, password, function(configurationName, serverName, token) {
+        VRASystem.doSecure(null, serverName, login, password, true, function(configurationName, serverName, token) {
             if ( (typeof(token) != "undefined") && (token != '') ) {
                 GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "connection.success.message"));
             }
-        });
+        }, function() {});
         GenericSystem.showLoading("vra-loading", false);
     },
     

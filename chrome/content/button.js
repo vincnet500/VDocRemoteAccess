@@ -36,10 +36,10 @@ VRAButton = {
             var serverConfiguration = allSC.servers[key];
             
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, false, function(configurationName, serverName, token) {
                 var localServerConfiguration = VRAAdvancedOptions.getServerConfiguration(configurationName);
                 directAccessMenuItem.appendChild(GenericSystem.createMenuItem(GenericSystem.addURLParameter(localServerConfiguration.serverURL, "_AuthenticationKey=" + token), localServerConfiguration.configurationName));
-            });
+            }, function() {});
         }
     },
 	
@@ -47,6 +47,7 @@ VRAButton = {
         var allSC = VRAAdvancedOptions.getAllServerConfigurations();
         var allWorkflowEntries = [];
         var indexServer = 0;
+        var errorState = false;
         for (var key in allSC.servers) {
             var serverConfiguration = allSC.servers[key];
             
@@ -61,9 +62,8 @@ VRAButton = {
             xw.writeEndElement();
 
             var xmlString = xw.flush();
-
             var serverName = VRASystem.validateServerName(serverConfiguration.serverURL);
-            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, function(configurationName, serverName, token) {
+            VRASystem.doSecure(serverConfiguration.configurationName, serverName, serverConfiguration.serverLogin, serverConfiguration.serverPassword, false, function(configurationName, serverName, token) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", serverName + "navigation/flow?module=workflow&cmd=cmd&killsession=false&_AuthenticationKey=" + token, true);
                 xhr.onreadystatechange = function() {
@@ -111,11 +111,16 @@ VRAButton = {
                                 }
                             }
                         }
-                        
+
                         indexServer++;
                     }
                 }
                 xhr.send(xmlString);
+            }, function() {
+                if (!errorState) {
+                    GenericSystem.basicAlert(GenericSystem.getTranslation("vra-string-bundle", "button.configuration.atleast.one.server.connection.error"));
+                }
+                errorState = true;
             });
         }
     },
